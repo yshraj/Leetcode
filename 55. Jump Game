@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool solve(int i,int n,vector<int>& nums,vector<int> &dp)
+    {
+        if(dp[i]!=-1) return dp[i];
+        
+        if(i==n-1) return dp[i]= true;
+        
+        for(int j=1;j<=nums[i];j++)
+        {
+            if(solve(i+j,n,nums,dp)) return dp[i]=true;
+        }
+        return dp[i]=false;
+    }
+    bool canJump(vector<int>& nums) 
+    {
+        vector<int> dp(nums.size(),-1);
+        return solve(0,nums.size(),nums,dp);
+        
+        
+    }
+};
