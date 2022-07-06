@@ -1,0 +1,59 @@
+class Solution {
+public:
+    string minWindow(string s, string t) {
+     const int chars = 256;
+
+    int sLen=s.length();
+    int tLen=t.length();
+    
+    if(sLen<tLen){ 
+        return "";
+    }
+    
+    int sTable[chars] = {0};
+    int tTable[chars] = {0};
+    
+    for(int i=0;i<tLen;i++)
+        tTable[t[i]]++;
+    
+    int start=0,startIndex=-1,minLen=INT_MAX;
+    int count=0;
+    
+    
+    for(int i=0;i<sLen;i++){
+        
+        sTable[s[i]]++;
+        
+        if(sTable[s[i]]<=tTable[s[i]])
+        count++;
+        
+        
+        if(count == tLen){
+            
+            while(sTable[s[start]] > tTable[s[start]]  ||  tTable[s[start] == 0]){
+                
+                if(sTable[s[start]] > tTable[s[start]])
+                    sTable[s[start]]--;
+                
+                start++;
+            }
+         
+            int windowLen= i-start+1;
+            
+            if(minLen>windowLen){
+                minLen=windowLen;
+                startIndex=start;
+            }
+                
+        }
+        
+    }
+    
+    if(startIndex == -1)
+        return "";
+    
+    return s.substr(startIndex, minLen);
+    
+       
+    }
+};
