@@ -1,0 +1,14 @@
+int solve(int i,int n)
+{
+
+    if(i==n) return 1;
+    if(i>n) return 0;
+    return (solve(i+1,n,dp) + solve(i+2,n,dp));
+
+
+}
+int climbStairs(int n) 
+{
+    return solve(0,n);
+
+}
