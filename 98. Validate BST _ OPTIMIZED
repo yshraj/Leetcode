@@ -1,0 +1,17 @@
+ bool validate(TreeNode* root, long long int min,long long int max)
+    {
+        if(root==NULL) //base condition
+            return true;
+        
+        if(root->val<=min || root->val >= max)   //if root value is less than min value then it is not bst and return false 
+            return false;
+			
+        //update the maximum  value of left side && update the minimum value of right side tree
+		
+        return validate(root->left,min,root->val) && validate(root->right,root->val,max);
+        
+    }
+    bool isValidBST(TreeNode* root) {
+        
+        return validate(root,LONG_MIN,LONG_MAX);
+    }
