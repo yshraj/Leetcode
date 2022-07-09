@@ -1,0 +1,25 @@
+int max1(int i,TreeNode* temp)
+    {
+        if(i==-1) return -1;
+        if(temp==nullptr) return i;
+        
+        int l = max1(1+i,temp->left);
+        int r = max1(1+i,temp->right);
+        
+        if(abs(l-r)>1)
+        {
+            return -1;
+        }
+        else
+        {
+            return max(l,r);
+        }
+        
+    }
+    
+    bool isBalanced(TreeNode* root) 
+    {
+        if(max1(0,root)==-1) return false;
+        else return true;
+        
+    }
