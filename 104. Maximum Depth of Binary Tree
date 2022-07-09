@@ -1,0 +1,12 @@
+    int max1(int i,TreeNode* temp)
+    {
+        if(temp==nullptr) return i;
+        //return max1(1+i,temp->left);
+        return max(max1(1+i,temp->left),max1(1+i,temp->right));
+    }
+    int maxDepth(TreeNode* root) 
+    {
+        
+        return max1(0,root);
+    
+    }
