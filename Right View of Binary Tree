@@ -1,0 +1,36 @@
+vector<int> rightView(Node *root)
+    {
+       // Your Code here
+        queue<pair<Node*,int>> q;
+        map<int,int> m;
+        q.push({root,0});
+        vector<int> ans;
+        if(!root) return ans;
+        
+        while(!q.empty())
+        {
+            auto it = q.front();
+            q.pop();
+            
+            int x = it.first->data; 
+            int y = it.second;
+            
+
+            m[y] = x;
+            
+            if(it.first->left)
+            {
+                q.push({it.first->left,y+1});
+            }
+            if(it.first->right)
+            {
+                q.push({it.first->right,y+1});
+            }
+        }
+        
+        for(auto i:m)
+        {
+            ans.push_back(i.second);
+        }
+        return ans;
+    }
