@@ -1,0 +1,113 @@
+
+//Function to add parents in map
+
+void parent(unordered_map<Node*,Node*> &map,Node* root)
+    {
+        queue<Node*> q;
+        q.push(root);
+        
+        while(!q.empty())
+        {
+            Node*  temp = q.front();
+            q.pop();
+            
+            if(temp->left)
+            {
+                map[temp->left]=temp;
+                q.push(temp->left);
+            }
+            if(temp->right)
+            {
+                map[temp->right]=temp;
+                q.push(temp->right);
+            }
+            
+        }
+        
+        
+        
+        
+    }
+    int minTime(Node* root, int target) 
+    {
+        int ans=0;
+        unordered_map<Node*,Node*> map;
+        parent(map,root);
+        queue<Node*> que;
+        
+        Node* tar;
+        que.push(root);
+        while(!que.empty())
+        {
+            Node* temp =que.front();
+            que.pop();
+            
+            if(temp->data==target)
+            {
+                tar = temp;
+                break;
+            }
+            if(temp->left)
+            {
+                if(temp->left->data==target)
+                {
+                    tar = temp->left;
+                    break;
+                }
+                else
+                {
+                    que.push(temp->left);
+                }
+            }
+            
+            if(temp->right)
+            {
+                if(temp->right->data==target)
+                {
+                    tar = temp->right;
+                    break;
+                }
+                else
+                {
+                    que.push(temp->right);
+                }
+            }
+        }
+        unordered_map<Node*,bool> visited;
+        
+        queue<Node*> q;
+        q.push(tar);
+        
+        visited[tar] = true;
+        
+        ans=0;
+        while(!q.empty())
+        {
+            ans++;
+            int n=q.size();
+            
+            for(int i=0;i<n;i++)
+            {
+                Node* temp =q.front();
+                q.pop();
+                
+            if(temp->left && !visited[temp->left])
+            {
+               visited[temp->left]=true;
+               q.push(temp->left);
+            }
+             if(temp->right && !visited[temp->right])
+            {
+               visited[temp->right]=true;
+               q.push(temp->right);
+            }
+            
+            if(map[temp] && !visited[map[temp]])
+            {
+               visited[map[temp]]=true;
+               q.push(map[temp]); 
+            }   
+            } 
+        }
+        return ans-1;
+    }
