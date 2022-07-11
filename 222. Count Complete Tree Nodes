@@ -1,0 +1,28 @@
+int countNodes(TreeNode* root) 
+    {
+        if(!root) return 0;
+        queue<TreeNode*> q;
+        q.push(root);
+       
+        int c=1;
+        while(!q.empty())
+        {
+            TreeNode* temp = q.front();
+            q.pop();
+            
+            if(temp->left)
+            {
+                q.push(temp->left);
+                c++;
+            }
+            if(temp->right)
+            {
+                q.push(temp->right);
+                c++;
+            }
+            
+        }
+        return c;
+        
+        
+    }
