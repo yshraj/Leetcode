@@ -1,0 +1,8 @@
+        while(root!=NULL && root->val!=val)
+        {
+            if(root->val==val) break;
+            if(root->val < val) root = root->right;
+            else root = root->left;
+            
+        }
+        return root;
