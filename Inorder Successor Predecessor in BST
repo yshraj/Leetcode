@@ -1,0 +1,23 @@
+// returns the inorder successor of the Node x in BST (rooted at 'root')
+    Node * inOrderSuccessor(Node *root, Node *x)
+    {
+    Node * root1 = NULL;
+    
+    while(root)
+    {
+        if(root->data > x->data)
+        {
+            root1 = root;
+            root = root->left;
+        }
+        else
+        {
+            root = root->right;
+        }
+        
+        
+    }
+
+return root1;
+
+    }
