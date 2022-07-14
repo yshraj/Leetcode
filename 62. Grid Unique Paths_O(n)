@@ -1,4 +1,6 @@
-    int uniquePaths(int m, int n) {
+    int uniquePaths(int m, int n) 
+    {
+    
             int N = n + m - 2;
             int r = m - 1; 
             double res = 1;
