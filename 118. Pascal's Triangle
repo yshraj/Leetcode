@@ -1,0 +1,20 @@
+    vector<vector<int>> generate(int numRows) 
+    {
+       vector<vector<int>> solve(numRows,vector<int>(numRows));
+        
+        for(int i=0;i<numRows;i++)
+        {
+            
+            solve[i].resize(i+1);
+            
+            solve[i][0] = solve[i][i] = 1;
+            
+            for(int j=1;j<i;j++)
+            {
+                solve[i][j] = solve[i-1][j] + solve[i-1][j-1];
+
+            }
+            
+        }
+return solve;        
+    }
