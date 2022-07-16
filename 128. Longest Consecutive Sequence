@@ -1,0 +1,30 @@
+//128. Longest Consecutive Sequence
+
+    int longestConsecutive(vector<int>& nums) 
+    {
+        int n = nums.size();
+        if(n==0) return 0;
+        
+        unordered_set<int> st(nums.begin(),nums.end());
+        
+        int mx = 1;
+        int temp=0,op;
+        for(int i=0;i<n;i++)
+        {
+           
+            if(st.find(nums[i]-1)==st.end())
+            {
+                temp=0;
+                op = nums[i];
+                while(st.find(op)!=st.end()) temp++,op++;
+                
+                mx = max(temp,mx);
+ 
+            }
+            
+            
+            
+        }
+        return mx;
+        
+    }
