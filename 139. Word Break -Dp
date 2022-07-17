@@ -1,31 +1,17 @@
-    bool solve(int index,string s,set<string> &words,vector<int> &dp)
+        bool solve(int index,string s,set<string> &words,vector<int> &dp)
     {
-        if(index==s.size())  
-        {
-            
-            return 1;
-        }
-        
+        if(index==s.size()) return 1;
+
         if(dp[index]!=-1) return dp[index];
-        vector<int> kl;
+        
         for(int k=index;k<s.size();k++)
         {
-            
-            if(words.find(s.substr(index,k-index+1))!=words.end())
+            if(words.find(s.substr(index,k-index+1))!=words.end() && solve(k+1,s,words,dp))
             {
-                kl.push_back(k);
+                return dp[index]=true;
             }
         }
-        bool ans = 0;
-        for(auto it:kl)
-        {
-             ans = ans|solve(it+1,s,words,dp) ;
-            if(ans) return dp[index]=1;
-        
-        }
-       return dp[index]=ans;
-        
-        
+         
      return dp[index]=0;  
     }
     bool wordBreak(string s, vector<string>& wordDict) 
@@ -34,8 +20,5 @@
         
         vector<int> dp(s.size(),-1); 
         return solve(0,s,words,dp);
-        
-        
-        
-        
+
     }
