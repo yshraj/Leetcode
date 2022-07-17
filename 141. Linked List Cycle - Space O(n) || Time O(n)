@@ -1,0 +1,16 @@
+bool hasCycle(ListNode *head) 
+	{
+		ListNode* curr=head;
+
+		unordered_set<ListNode*> m;
+
+		while(curr)
+		{
+
+			if(m.find(curr)!=m.end()) return true;
+			else m.insert(curr);
+			curr = curr->next;
+		}
+		return false;
+
+	}
