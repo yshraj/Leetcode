@@ -13,12 +13,9 @@
            return solve(p->left,q->left) && solve(p->right,q->right);
         }
         
-        return false;
-        
-        
+        return false;  
     }
     bool isSameTree(TreeNode* p, TreeNode* q) 
     {
         return solve(p,q);
-        
     }
