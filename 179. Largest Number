@@ -1,0 +1,28 @@
+class Solution {
+public:
+    //simple idea here is to convert all numbers of vector into the string and then compare it to arrange such that it will form the greatest number
+    
+    //this is comparator function used while sorting.. This basically compares between the two strings that which pair forms greatest number
+    static bool compare(string a, string b){
+        return a+b>b+a;
+    }
+    
+    string largestNumber(vector<int>& nums) {
+        vector<string>res;
+        
+        //for every integer we convert it into the string and push to our vector
+        for(int x : nums){
+            string temp = to_string(x);
+            res.push_back(temp);
+        }
+        
+        //after that we will sort our array such that we get maximum number
+        sort(res.begin(),res.end(),compare);
+        string op = "";
+        //this is used to add our numbers to output string
+        for(string s : res){
+            op += s;
+        }
+        return op[0]=='0' ? "0" : op; //if the number has leading zeroes istead of returning all the zeroes we return single zero else we return our op string..
+    }
+};
