@@ -1,0 +1,28 @@
+ bool validPath(int n, vector<vector<int>>& edges, int source, int destination) 
+    {
+        vector<bool> visited(n,false);
+        queue<int> q;
+        q.push(source);
+        visited[source]= true;
+        
+        while(!q.empty())
+        {
+            int t=q.front();
+            q.pop();
+            if(t==destination) return true;
+            for(int i=0;i<edges.size();i++)
+            {
+                
+                if(edges[i][0]==t || edges[i][1]==t)
+                {
+                    if(edges[i][0]==t && visited[edges[i][1]]==false) 
+                        q.push(edges[i][1]),visited[edges[i][1]] =true;
+                    else if(edges[i][1]==t && visited[edges[i][0]]==false)
+                        q.push(edges[i][0]),visited[edges[i][0]] =true;
+                }     
+            }    
+        }
+        return false;
+        
+        
+    }
