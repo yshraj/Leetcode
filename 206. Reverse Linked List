@@ -1,0 +1,49 @@
+ListNode* reverseList(ListNode* head) 
+	{
+
+		vector<int> v;
+
+		 ListNode *temp;
+
+		temp=head;
+		while(head!=NULL)
+		{
+		v.push_back(head->val);    
+			head = head->next;
+
+		}
+
+
+
+		reverse(v.begin(),v.end());
+
+		head= temp;
+		int i=0;
+		while(head!=NULL)
+		{
+		head->val = v[i];   
+			i++;
+			head = head->next;
+
+		}
+
+		return temp;
+	}
+	
+	//-------------------Easy Inplace solution--------------------------------------
+ ListNode* reverseList(ListNode* head) 
+{
+    
+    ListNode* dummy = NULL;
+    ListNode* temp = NULL;
+    
+    while(head!=NULL)
+    {
+        temp = head->next;
+        head->next = dummy;
+        dummy = head;
+        head=temp;
+    }
+    return dummy;
+    
+}
