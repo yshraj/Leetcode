@@ -1,0 +1,35 @@
+bool isvalid(int i,int j,int n,int m)
+    {
+        if(i<0 || j<0 || i>=n || j>=m) return false;
+        return true;   
+    }
+    void DFS(int i,int j,int n,int m,vector<vector<int>>& image,int orgn, int color)
+    {
+        if(i<0 || j<0 || i>=n || i>=m || image[i][j]!=orgn) return;
+        
+        if(image[i][j]==orgn && image[i][j]!=color)
+        {
+            image[i][j] = color;
+             
+             // if(isvalid(i,j+1,n,m)) 
+                 DFS(i,j+1,n,m,image,orgn,color);
+             // if(isvalid(i+1,j,n,m)) 
+                 DFS(i+1,j,n,m,image,orgn,color);
+             // if(isvalid(i-1,j,n,m)) 
+                 DFS(i-1,j,n,m,image,orgn,color);
+             // if(isvalid(i,j-1,n,m)) 
+                 DFS(i,j-1,n,m,image,orgn,color);
+        
+            return;
+        }  
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) 
+    {
+        int n = image.size();
+        int m = image[0].size();
+        
+        int original_color = image[sr][sc];
+        
+        DFS(sr,sc,n,m,image,original_color,color);
+        return image;     
+    }
