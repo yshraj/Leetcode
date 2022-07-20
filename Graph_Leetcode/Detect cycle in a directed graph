@@ -1,0 +1,36 @@
+ bool dfs_call(int i,vector<int> adj[],vector<int>& dfs,vector<int>& dfs_visited)
+    {
+    dfs[i]=1;
+    dfs_visited[i]=1;
+    
+    for(auto it:adj[i])
+    {
+        if(dfs[it]==0){
+          if(dfs_call(it,adj,dfs,dfs_visited)) return true;
+        }
+        else if(dfs[it]==1 && dfs_visited[it]==1)
+        {
+            return true;
+        }
+    }
+        
+    dfs_visited[i]=0;   
+    return false;
+    }
+    bool isCyclic(int V, vector<int> adj[]) {
+        // code here
+        
+        vector<int> dfs(V,0);
+        vector<int> dfs_visited(V,0);
+        
+        for(int i=0;i<V;i++)
+        {
+            if(dfs[i]==0)
+            {
+                
+                if(dfs_call(i,adj,dfs,dfs_visited)) return true;
+            }
+            
+        }
+    return false;    
+    }
