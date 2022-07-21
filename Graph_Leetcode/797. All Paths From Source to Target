@@ -1,40 +1,27 @@
-
-
-    void dfs(int i,int n,vector<int>& vis,vector<vector<int>>& ans,vector<vector<int>>& graph,vector<int>& temp)
+ void dfs(int i,int n,vector<vector<int>>& ans,vector<vector<int>>& graph,vector<int>& temp)
     {
         if(i==n) 
         {
             ans.push_back(temp);
-            // return;
         }
-        vis[i]=1;
+        
         for(auto it:graph[i])
         {
-            if(vis[it]==-1)
-            {
-                temp.push_back(it);
-                dfs(it,n,vis,ans,graph,temp);
-                
-            }
-           
+            temp.push_back(it);
+            dfs(it,n,ans,graph,temp);  
         }
         temp.pop_back();
-        vis[i]=-1;
         return;
     }
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) 
     {
-        vector<vector<int>> ans;
         int n = graph.size();
-        vector<int> vis(n,-1);
         
+        vector<vector<int>> ans;
         vector<int> temp;
+        
         temp.push_back(0);
         
-        dfs(0,n-1,vis,ans,graph,temp);
-        
-        return ans;
-        
-        
-        
+        dfs(0,n-1,ans,graph,temp);
+        return ans;    
     }
