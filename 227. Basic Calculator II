@@ -1,0 +1,36 @@
+ bool isDig(char a){ return a >= '0' and a <= '9'; }
+    
+    int calculate(string s) {
+        int n = s.size();
+        int curNo = 0;
+        char op = '+';
+        stack<int> st;
+        for(int i=0;i<n;i++){
+            char cur = s[i];
+            if(isDig(cur)){
+                curNo = curNo*10 + (cur - '0');
+            }
+            if((!isDig(cur) && cur != ' ' )|| i == n-1 ){
+                if(op == '+'){
+                    st.push(curNo);
+                }else if(op == '-'){
+                    st.push(-curNo);
+                }else if(op == '/'){
+                    int x = st.top(); st.pop();
+                    st.push(x/curNo);
+                }else if(op == '*'){
+                    int x = st.top(); st.pop();
+                    st.push(x*curNo);
+                }
+                curNo = 0;
+                op = cur;
+            }
+        }
+        int ans = 0;
+        while(!st.empty())
+        {
+            ans += st.top(); 
+            st.pop();
+        }
+            return ans;
+    }
