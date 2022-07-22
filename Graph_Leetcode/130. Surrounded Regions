@@ -1,7 +1,9 @@
     void dfs(int i,int j,int n,int m,vector<vector<char>>& board)
     {
+    
         if(i<0 || j<0 || j>=m || i>=n || board[i][j]=='X') return;
         if(board[i][j]=='X') return;
+        
         if(board[i][j]=='O')
         {
             board[i][j]='B';
