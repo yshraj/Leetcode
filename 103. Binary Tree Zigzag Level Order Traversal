@@ -5,6 +5,7 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root)
         
         queue<TreeNode*> q;
         q.push(root);
+        
         int j=0;
         
         while(!q.empty())
