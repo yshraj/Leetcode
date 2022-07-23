@@ -1,6 +1,4 @@
-//100. Same Tree 
-    
-    bool solve(TreeNode* p, TreeNode* q)
+bool solve(TreeNode* p, TreeNode* q)
     {
         if(p==nullptr || q==nullptr)
         {
