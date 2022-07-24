@@ -1,0 +1,66 @@
+//-------------------1) Sort Both the strings----------------------------
+	bool isAnagram(string s, string t) 
+	{
+		sort(s.begin(),s.end());
+		 sort(t.begin(),t.end());
+		return s==t;
+
+	}
+
+
+	//-------------------2) Using Simple Array---------------------------
+
+	bool isAnagram(string s, string t)
+	{
+		 int a[26];
+		 int b[26];
+
+
+		for (int i=0;i<s.length();i++)
+		{
+			int c = s[i]-97;
+			a[c]++;
+
+
+		}
+		  for (int i=0;i<t.length();i++)
+		{
+			int c = t[i]-97;
+			b[c]++;
+
+
+		}
+
+		   for (int i=0;i<26;i++)
+		{
+		   if(a[i]!=b[i])
+		   {
+			   return false;
+		   }
+
+		}
+		return true;
+	}
+
+		//-------------------3) Using HashMap---------------------------
+	bool isAnagram(string s, string t) 
+	{
+		map<char,int> m;
+
+		for(auto i:s)
+		{
+			m[i]++;
+		}
+		for(auto i:t)
+		{
+			if(m.find(i)==m.end() || m[i]==0) return false;
+			else m[i]--;
+		}
+
+		for(auto i:m)
+		{
+			if(i.second>0) return false;
+		}
+		return true;
+
+	}
