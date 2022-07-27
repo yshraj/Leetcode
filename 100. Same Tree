@@ -9,6 +9,7 @@ bool solve(TreeNode* p, TreeNode* q)
         if(p->val == q->val)
         {
            return solve(p->left,q->left) && solve(p->right,q->right);
+        
         }
         
         return false;  
