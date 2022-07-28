@@ -1,0 +1,28 @@
+  ListNode* deleteDuplicates(ListNode* head) 
+    {
+        //83. Remove Duplicates from Sorted List
+
+         ListNode *temp =head;
+ ListNode *prev;
+  ListNode *op;
+ while(temp!=NULL)
+ {
+     prev = temp;
+     
+     temp = temp->next;
+     if(temp!=NULL && temp->val==prev->val)
+     {
+        op  = temp->next;
+         prev->next = op; 
+        temp = prev;
+        //  temp = prev->next->next ;
+         
+     }
+              
+
+     
+ }
+ 
+ return head;
+        
+    }
