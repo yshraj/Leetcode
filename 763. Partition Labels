@@ -1,0 +1,72 @@
+    vector<int> partitionLabels(string s) 
+    {
+        map<char ,int> first_occ;
+        map<char ,int> last_occ;
+        vector<vector<int>> overlap;
+        set<char> set;
+        
+        for(auto c: s)
+        {
+            set.insert(c);
+        }
+        
+        for(auto c:set)
+        {
+            int a,b;
+            for(int i=0;i<s.size();i++)
+            {
+                if(s[i]==c) 
+                    {
+                    a=i;
+                    break;
+                }
+                
+            }
+            for(int i=s.size()-1;i>=0;i--)
+            {
+                if(s[i]==c) 
+                {
+                    b=i;
+                    break;
+                }
+            
+            }
+            overlap.push_back({a,b});
+        }   
+        sort(overlap.begin(),overlap.end());
+        
+        
+        
+        vector<int> temp = overlap[0];
+        int op,mx;
+        vector<int> ans;
+        for(int i=1;i<overlap.size();i++)
+        {
+            if(overlap[i][0]>temp[0] && overlap[i][0]<temp[1])
+            {
+                op = temp[0];
+                mx = max(overlap[i][1],temp[1]);
+                temp = {op,mx};
+            }
+            else
+            {
+                ans.push_back(temp[0]);
+                ans.push_back(temp[1]);
+                temp = overlap[i];
+            }
+            
+            
+        }
+        ans.push_back(temp[0]);
+        ans.push_back(temp[1]);
+        vector<int> v;
+        for(int i=0;i<ans.size();i=i+2) 
+        {
+            v.push_back(ans[i+1] - ans[i] +1);
+        }
+        
+        
+        return v;
+        
+        
+    }
