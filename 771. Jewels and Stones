@@ -1,0 +1,15 @@
+int numJewelsInStones(string jewels, string stones) 
+    {
+        int ans=0;
+        map<char,int> s;
+        for(auto c:jewels)
+        {
+            s[c]++;
+        }
+        
+        for(auto c:stones)
+        {
+           if(s.find(c)!=s.end()) ans++;
+        }
+        return ans;
+    }
