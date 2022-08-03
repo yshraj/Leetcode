@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int>pos[26];
+string gstr;
+int DP[1000010];
+int solve(int idx)
+{
+    if (DP[idx]!=-1)
+        return DP[idx];
+    if (gstr[idx]=='Z')
+        return DP[idx]=idx;
+    if (upper_bound(pos[gstr[idx]-'A'+1].begin(), pos[gstr[idx]-'A'+1].end(), idx)!=pos[gstr[idx]-'A'+1].end())
+        return DP[idx]=solve(*upper_bound(pos[gstr[idx]-'A'+1].begin(), pos[gstr[idx]-'A'+1].end(), idx));
+    return DP[idx]=1e9;
+}
+int minSubstring(string s)
+{
+    memset(DP, -1, sizeof(DP));
+    gstr=s;
+    for (int i=0; i<s.size(); i++)
+        pos[s[i]-'A'].push_back(i);
+    int ret=1e9;
+    for (int i=0; i<pos[0].size(); i++)
+        ret=min(ret,solve(pos[0][i])-pos[0][i]+1);
+    return ret;
+}
+
+
+int main()
+{
+
+    string s;
+    cin >> s;
+
+    int result = minSubstring(s);
+
+    cout << result << "\n";
+
+
+    return 0;
+}
