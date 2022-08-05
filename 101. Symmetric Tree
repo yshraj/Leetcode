@@ -9,7 +9,6 @@ bool solve(TreeNode* left,TreeNode* right)
         return false;
 
     return solve(left->left,right->right) && solve(left->right,right->left);
-
 }
 
 bool isSymmetric(TreeNode* root) 
