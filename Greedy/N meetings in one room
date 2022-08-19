@@ -1,0 +1,44 @@
+    struct meet 
+    {
+        
+        int start;
+        int end;
+        int pos;
+        
+    };
+    
+   static bool comp(struct meet a, meet b)
+    {
+        if(a.end<b.end) return true;
+        else if(a.end>b.end) return false;
+        else if(a.pos<b.pos) return true;
+        else return false;
+    }
+    public:
+    int maxMeetings(int start[], int end[], int n)
+    {
+        struct meet m[n];
+        for(int i=0;i<n;i++)
+        {
+            m[i].start = start[i];
+            m[i].end = end[i];
+            m[i].pos = i+1;
+        }
+        
+        sort(m,m+n,comp);
+        
+        
+        int mxtime = m[0].end;
+        int meetings=1;
+        
+        for(int i=1;i<n;i++)
+        {
+            if(m[i].start>mxtime)
+            {
+                meetings++;
+                mxtime = m[i].end;
+            }
+            
+        }
+            return meetings;
+    }
