@@ -1,0 +1,25 @@
+//Greedy algorithm to find minimum number of coins
+    vector<int> minPartition(int N)
+    {
+        vector<int> ans;
+        vector<int> curr={ 1, 2, 5, 10, 20, 50, 100, 200, 500, 2000 } ;
+        
+        int i = curr.size()-1;
+        while(N>=0 && i>=0)
+        {
+            if(curr[i]<=N)
+            {
+                N -= curr[i];
+                ans.push_back(curr[i]);
+            }
+                
+            
+            else
+            {
+                i--;
+            }
+            
+            
+        }
+        return ans;
+    }
