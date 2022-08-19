@@ -1,0 +1,32 @@
+    int findPlatform(int arr[], int dep[], int n)
+    {
+    //We will sort both the arriving and departure time because 
+    //We dont want corrosponding beetween trains arr and dep time.
+    //We just want to check min platforms needed
+    
+    sort(arr,arr+n);
+    sort(dep,dep+n);
+    int i=1;
+    int count = 1;
+    int mx=1;
+    int j=0;
+    
+    while(i<n && j<n)
+    {
+        if(arr[i]<=dep[j])
+        {
+            count++;
+            i++;
+            mx = max(count,mx);
+        }
+        
+        
+        else if(arr[i]>dep[j])
+        {
+            count--;
+            j++;
+        }
+   
+    }
+    return mx;
+    }
