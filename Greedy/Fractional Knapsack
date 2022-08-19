@@ -1,0 +1,30 @@
+static bool comp(struct Item a,struct Item b)
+    {
+        double r1 = double(a.value)/double(a.weight);
+        double r2 = double(b.value)/double(b.weight);
+        return r1>r2;
+    }
+    double fractionalKnapsack(int W, Item arr[], int n)
+    {
+        sort(arr,arr+n,comp);
+        double profit=0;
+        for(int i=0;i<n;i++)
+        {
+            int wht = arr[i].weight;
+            int val = arr[i].value;
+            
+            if(W-wht >0)
+            {
+                W-=wht;
+                profit+=val;
+            }
+            else
+            {
+                
+                profit+= W*(double(val)/double(wht));
+                break;
+            }
+            
+        }
+        return profit;
+    }
