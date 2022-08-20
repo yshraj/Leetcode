@@ -1,0 +1,35 @@
+//Given an array of distinct integers candidates and a target integer target, 
+//return a list of all unique combinations of candidates where the chosen numbers sum to target. 
+//The same number may be chosen from candidates an unlimited number of times. 
+//Two combinations are unique if the frequency of at least one of the chosen numbers is different.
+
+
+    void solve(int i,int n,vector<int> &temp,vector<vector<int>> &ans,vector<int>& nums,int sum)
+    {
+        
+        if(sum==0)
+        {
+            ans.push_back(temp);
+            return;
+        }
+
+        if(i==n) return;
+        if(sum>=nums[i])
+        {
+        temp.push_back(nums[i]);
+        
+        solve(i,n,temp,ans,nums,sum-nums[i]);
+        ////The same number may be chosen from candidates an unlimited number of times. 
+        
+        temp.pop_back();
+        }
+        solve(i+1,n,temp,ans,nums,sum);   
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) 
+    {
+        vector<vector<int>> ans;
+        vector<int> temp;
+        solve(0,candidates.size(),temp,ans,candidates,target);
+        return ans;   
+        
+    }
