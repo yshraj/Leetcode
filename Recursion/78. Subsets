@@ -1,3 +1,6 @@
+//Given an integer array nums of unique elements, return all possible subsets (the power set).
+//The solution set must not contain duplicate subsets. Return the solution in any order.
+
 void solve(int i,int n,vector<int> &temp,vector<vector<int>> &ans,vector<int>& nums)
     {
         if(i==n)
